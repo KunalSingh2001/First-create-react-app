@@ -1,10 +1,11 @@
+import "./ExpenseItem.css";
 function ExpansesList() {
     return (
-        <div>
-            <p>This is list of components</p>
+        <div class="expense-item">
+            <p class="expense-item__description">This is list of components</p>
             <div>Book</div>
-            <div>Delhi</div>
-            <div>$10</div>
+            <div class="expense-item__location">Delhi</div>
+            <div class="expense-item__price">$10</div>
         </div>
     );
 }
