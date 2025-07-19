@@ -1,11 +1,12 @@
 import "./ExpenseItem.css";
-function ExpansesList() {
+function ExpansesList(props) {
     return (
         <div class="expense-item">
-            <p class="expense-item__description">This is list of components</p>
-            <div>Book</div>
-            <div class="expense-item__location">Delhi</div>
-            <div class="expense-item__price">$10</div>
+            <p className="expense-item__description">{props.description}</p>
+            <div>{props.date.toDateString()}</div>
+            <div>{props.title}</div>
+            <div className="expense-item__location">{props.location}</div>
+            <div className="expense-item__price">{props.price}</div>
         </div>
     );
 }
