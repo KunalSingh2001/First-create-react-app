@@ -12,7 +12,7 @@ function App() {
         <p>dcdhcbhbdchb</p>
         {items.map((val, index) => {
           return (
-            <ExpansesList date={val.date} location={val.location} description={val.description} title={val.title} price={val.price}></ExpansesList>
+            <ExpansesList date={val.date} location={val.location} description={val.description} title={val.title} price={val.price}/>
           );
         })}
     </div>

@@ -6,7 +6,7 @@ function ExpansesList(props) {
     return (
         <div class="expense-item">
             
-            <ExpenseDate date ={props.date} ></ExpenseDate>
+            <ExpenseDate date ={props.date} />
             <p className="expense-item__description">{props.description}</p>
             <div>{props.title}</div>
             <div className="expense-item__location">{props.location}</div>
