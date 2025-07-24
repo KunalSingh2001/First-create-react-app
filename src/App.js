@@ -1,4 +1,5 @@
 import ExpansesList from "./components/ExpensesItem";
+import NewExpense from "./components/ExpenseForm/NewExpense";
 function App() {
   const items = [
     {id:1, date: new Date(2025, 7, 19), location:"Bangalore", description: "this is props", title: "Insurance", price:"$10"},
@@ -8,8 +9,7 @@ function App() {
   ];
   return (
     <div>
-        <h1>Hello World</h1>
-        <p>dcdhcbhbdchb</p>
+        <NewExpense/>
         {items.map((val, index) => {
           return (
             <ExpansesList date={val.date} location={val.location} description={val.description} title={val.title} price={val.price}/>
