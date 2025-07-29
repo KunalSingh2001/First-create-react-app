@@ -12,8 +12,8 @@ function ExpansesList(props) {
             <ExpenseDate date ={new Date(props.date)} />
             <h2>{title}</h2>
             {/* <h4 className="expense-item__location">{props.location}</h4> */}
-            <div className="expense-item__price">${props.amount}</div>
-            <button onClick={buttonClickHandler}>Click me</button>
+            <div className="expense-item__price">{props.amount}</div>
+            {/* <button onClick={buttonClickHandler}>Click me</button> */}
         </Card>
     );
 }
