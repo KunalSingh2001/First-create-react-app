@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 import { Form, Formik, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
-const ExpansesForm = () => {
+const ExpansesForm = (props) => {
     //Both method are will work this is for small form
 
     // const [enteredTitle, setEnteredTitle] = useState('');    //We don't need of store state while we using Formik because its saving sate by its own
@@ -100,7 +100,8 @@ const ExpansesForm = () => {
     // }
 
     const formSubmitHandler = (values, { resetForm }) => {
-        console.log('Form data:', values);
+        const updatedData = {...values, id:Math.random().toString()}
+        props.onSaveExpenseData(updatedData);
         resetForm();
     };
 

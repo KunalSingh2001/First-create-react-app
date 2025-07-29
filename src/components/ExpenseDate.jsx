@@ -15,6 +15,7 @@ const months = [
     "December"
 ];
 function ExpensesDate (props) {
+    console.log('props', props);
     let month = props.date.getMonth();
     let getFullYear = props.date.getFullYear();
     let date = props.date.getDate();
