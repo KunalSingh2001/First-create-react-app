@@ -11,18 +11,28 @@ function App() {
 	];
 	const [expenses, setExpanese] = useState(DUMMY_DATA);
 	function expansesSummitedData(data) {
+		const updatedData = {
+			...data,
+			amount: data.amount.toString().startsWith('$') ? data.amount : `$${data.amount}`,
+			date:new Date(data.date)
+		};
 		setExpanese((prevExpenses) => {
-			return [data, ...prevExpenses]
+			return [updatedData, ...prevExpenses]
 		});
+
 	}
-	const [filteredYear, setFilteredYear] = useState("2021");
+	let [filteredYear, setFilteredYear] = useState("");
 	function changeFilterHandler(selectedYear) {
 		setFilteredYear(selectedYear);
 	}
-
-	const filteredData = expenses.filter((val) => {
-		return val.date.getFullYear() == filteredYear;
-	})
+	let filteredData = "";
+	if (filteredYear == "") {
+		filteredData = expenses;
+	} else {
+		filteredData = expenses.filter((val) => {
+			return val.date.getFullYear() == filteredYear;
+		});
+	}
 	return (
 		<div>
 			<NewExpense onExpanseSubmitDate={expansesSummitedData} />
