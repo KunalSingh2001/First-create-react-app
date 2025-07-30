@@ -3,6 +3,7 @@ import "./ExpenseForm.css";
 import { Form, Formik, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 const ExpansesForm = (props) => {
+    const [showForm, setShowForm] = useState(false);
     //Both method are will work this is for small form
 
     // const [enteredTitle, setEnteredTitle] = useState('');    //We don't need of store state while we using Formik because its saving sate by its own
@@ -103,34 +104,54 @@ const ExpansesForm = (props) => {
         const updatedData = {...values, id:Math.random().toString()}
         props.onSaveExpenseData(updatedData);
         resetForm();
+        setShowForm(false);
+    };
+    
+    const handleFormVisiablity = () => {
+        setShowForm(true)
     };
 
+    const handleHideForm = () => {
+        setShowForm(false)
+    }
 
     //Note :- we don't need to define value and onChnage in each field while we are using Formik ok
-    return <Formik initialValues={obj} validationSchema={validationSchema} onSubmit={formSubmitHandler}>
-        <Form>
-            <div className="new-expense__controls">
-                <div className="new-expense__control">
-                    <label htmlFor="title">Title</label>
-                    <Field type="text" name="title" id="title"/>
-                    <ErrorMessage name="title" component="div" className="text-red-500 text-md"/>
+    return (
+        <>
+            {!showForm &&(
+                <div className="new-expense__actions">
+                    <button type="button" onClick={handleFormVisiablity}>Add Expense</button>
                 </div>
-                <div className="new-expense__control">
-                    <label htmlFor="amount">Amount</label>
-                    <Field type="number" name="amount" id="amount"/>
-                    <ErrorMessage name="amount" component="div" className="text-red-500 text-md"/>
-                </div>
-                <div className="new-expense__control">
-                    <label htmlFor="date">Date</label>
-                    <Field name ="date" type="date" id="date" min="2023-01-01" max="2024-12-31"/>
-                    <ErrorMessage name="date" component="div" className="text-red-500 text-md" />
-                </div>
-            </div>
-            <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
-            </div>
-        </Form>
-    </Formik>;
+            )}
+            {showForm && (
+                <Formik initialValues={obj} validationSchema={validationSchema} onSubmit={formSubmitHandler}>
+                    <Form>
+                        <div className="new-expense__controls">
+                            <div className="new-expense__control">
+                                <label htmlFor="title">Title</label>
+                                <Field type="text" name="title" id="title"/>
+                                <ErrorMessage name="title" component="div" className="text-red-500 text-md"/>
+                            </div>
+                            <div className="new-expense__control">
+                                <label htmlFor="amount">Amount</label>
+                                <Field type="number" name="amount" id="amount"/>
+                                <ErrorMessage name="amount" component="div" className="text-red-500 text-md"/>
+                            </div>
+                            <div className="new-expense__control">
+                                <label htmlFor="date">Date</label>
+                                <Field name ="date" type="date" id="date" min="2023-01-01" max="2024-12-31"/>
+                                <ErrorMessage name="date" component="div" className="text-red-500 text-md" />
+                            </div>
+                        </div>
+                        <div className="new-expense__actions">
+                            <button type="button" onClick={handleHideForm}>Cancel</button>
+                            <button type="submit">Add Expense</button>
+                        </div>
+                    </Form>
+                </Formik>
+            )}
+        </>
+    )
 }
 
 export default ExpansesForm;

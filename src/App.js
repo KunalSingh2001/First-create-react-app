@@ -14,7 +14,7 @@ function App() {
 		const updatedData = {
 			...data,
 			amount: data.amount.toString().startsWith('$') ? data.amount : `$${data.amount}`,
-			date:new Date(data.date)
+			date: new Date(data.date)
 		};
 		setExpanese((prevExpenses) => {
 			return [updatedData, ...prevExpenses]
@@ -33,6 +33,27 @@ function App() {
 			return val.date.getFullYear() == filteredYear;
 		});
 	}
+	let filteredContent = "";
+	if (filteredData.length < 1) {
+		filteredContent = <p>No record found</p>
+	} else {
+		filteredContent = (
+			<>
+				{filteredData.map((val, index) => (
+					<ExpansesList
+						key={val.id || index}
+						date={val.date}
+						title={val.title}
+						amount={val.amount}
+					/>
+				))}
+				{filteredData.length === 1 && (
+					<p>Only one expense found. Please add more.</p>
+				)}
+			</>
+		);
+
+	}
 	return (
 		<div>
 			<NewExpense onExpanseSubmitDate={expansesSummitedData} />
@@ -40,16 +61,7 @@ function App() {
 				selected={filteredYear}
 				onChangeFilter={changeFilterHandler}
 			/>
-			{filteredData.map((val, index) => {
-				return (
-					<ExpansesList
-						key={val.id || index} // ADD a key!
-						date={val.date}
-						title={val.title}
-						amount={val.amount}
-					/>
-				);
-			})}
+			{filteredContent}
 		</div>
 	);
 }
