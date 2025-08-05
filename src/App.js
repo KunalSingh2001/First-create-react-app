@@ -3,6 +3,7 @@ import ExpansesList from "./components/ExpensesItem";
 import NewExpense from "./components/ExpenseForm/NewExpense";
 import ExpensesFilter from "./components/ExpensesFilter.jsx";
 import ExpensesChart from './components/ExpensesChart.js';
+
 function App() {
 	const DUMMY_DATA = [
 		{ id: 1, date: new Date(2025, 7, 19), location: "Bangalore", description: "this is props", title: "Insurance", amount: 10 },
